@@ -6,36 +6,35 @@
 
 ## 🚀 About Me
 
-- 🎓 CSE Undergrad | Batch of **2028**
-- 🛠 Passionate about building **scalable full-stack applications** and **AI-powered solutions**  
-- 🌐 Developer of responsive **Portfolio sites, E-commerce platforms, Club Websites, and LLM-powered QA systems**  
-- 📊 Strong foundation in **C**, **C++**, **Javascript**, **Python**
-- 🗄️ Experienced with **MySQL** & **PostgreSQL** for reliable data storage and scalable backend systems
-- ☁️ Exploring **DevOps tools** like **Docker**, **Kubernetes** and **CI/CD** 
-- 🔍 Curious about **System Design** and **Scalable Architectures**
-- 🧠 building expertise in **Data Structures & Algorithms**
+- 🎓 CSE Undergrad | Batch of **2028 (GECA)**
+- 🛠 Building **AI-powered systems, full-stack apps, and real-time platforms**
+- 🚀 **SIH 2025 National Finalist** | Open-source contributor (GSSoC)
+- 💡 Working on **ALONI** – a decentralized reputation platform (startup)
+- 📊 Strong in **Python, JavaScript, C++, AI/ML, and system design**
+- ☁️ Exploring **DevOps (Docker, Kubernetes, CI/CD)**  
+- 🔍 Focused on **scalable architectures and real-world problem solving**
+- 🧠 Actively practicing **DSA & competitive programming**
 
 ---
 
 ## 🧠 Projects & Domains
 
-| 💼 Domain | 🌟 Highlights |
-|----------|-----------------------------|
-|🚀 **Full-Stack Dev** | **Portfolio Website** (personal branding with animations) • **E-commerce Website** • **LLM-powered Document QA System**  
-|🌐 **Frontend Dev** | **C-Cube Coding Club Website** (3D + animations, responsive design) • Interactive UI projects with React + Tailwind  
-|🤖 **AI & LLMs** | Intelligent Query–Retrieval System (FastAPI + FAISS + OpenAI) • Hackathon prototypes  
-|📊 **Databases** | Worked with **MySQL & PostgreSQL** for scalable storage & retrieval  
-|☁️ **DevOps** | Learning deployments with Docker, Kubernetes, and CI/CD pipelines
+- 🚀 **ALvance** – AI-driven LCA tool for sustainability (88–93% accuracy, real datasets)  
+- 🧠 **Hallucination Hunter** – LLM hallucination detection system with evaluation metrics  
+- 📡 **SentinelAI** – Real-time surveillance system with WebSockets + YOLO  
+- 📈 **Stockinator** – Multi-strategy AI trading bot with real-time signals  
+- 🌐 **ALONI** – Decentralized reputation system (startup project)  
+- 📰 **Veritron AI** – Fake news detection using NLP  
 
 
 ---
 
 ## 🏆 Achievements
 
-- 🎯 Built multiple real-world **problem-solving platforms** across web & AI domains
-- 🛠  Active participant in **Hackathons** (SIH, HackRx, GDSC events)
-- 📈 Consistently improving **problem-solving skills by building a solid foundation in DSA** (LeetCode, CodeChef)
-- 🎯 Consistently deliver high-quality code, scalable systems, and intuitive UIs  
+- 🥇 **Smart India Hackathon 2025 Finalist** (Top teams nationwide)  
+- 🧠 Participated in **IIT Roorkee ML Competition (DataForge)**  
+- 💻 **GSSoC 2025 Contributor** (Open-source contributions recognized)  
+- ⚡ Built multiple **real-world AI + full-stack systems**  
 
 ---
 
