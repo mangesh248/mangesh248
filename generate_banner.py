@@ -110,35 +110,44 @@ def floyd_steinberg_dither(img_gray, mask=None, invert_for_light_mode=False):
                     
     return dots
 
-def generate_logo_point_clouds(num_points=900, cx=240, cy=330, scale=120):
+def extract_logo_from_image(image_path, num_points=900, cx=240, cy=345, scale=110):
     """
-    Generate 3 distinct logo point clouds (~900 points each) centered at (cx, cy).
-    1. Python (two interlocking rectangles/loops)
-    2. React (three ellipses + central atom)
-    3. Code brackets </>
+    Extract ~900 dot coordinates from an image file, centered at (cx, cy).
+    """
+    img = Image.open(image_path).convert("RGBA").resize((65, 65), Image.Resampling.LANCZOS)
+    arr = np.array(img)
+    mask = (arr[:, :, 3] > 40) & ((arr[:, :, 0] < 245) | (arr[:, :, 1] < 245) | (arr[:, :, 2] < 245))
+    ys, xs = np.where(mask)
+    if len(xs) == 0:
+        return np.zeros((num_points, 2)) + [cx, cy]
+    xs = xs.astype(float) - np.mean(xs)
+    ys = ys.astype(float) - np.mean(ys)
+    m = max(np.max(np.abs(xs)), np.max(np.abs(ys)), 1e-5)
+    xs = (xs / m) * scale
+    ys = (ys / m) * scale
+    idx = np.random.choice(len(xs), num_points, replace=(len(xs) < num_points))
+    pts = np.column_stack([cx + xs[idx], cy + ys[idx]])
+    pts += np.random.normal(0, 0.4, size=pts.shape)
+    return pts
+
+def generate_logo_point_clouds(num_points=900, cx=240, cy=345, scale=110):
+    """
+    Generate 4 distinct logo point clouds (~900 points each) centered at (cx, cy):
+    1. React (three ellipses + central atom)
+    2. Node.js (extracted from Nodejs.png)
+    3. ML (extracted from ML.png)
+    4. PostgreSQL (extracted from postgresql.webp)
     """
     np.random.seed(42)
     
-    # Logo 1: Python logo shape
+    # Logo 1: React logo shape (three ellipses rotated by 0, 60, 120 deg + nucleus)
     logo1 = []
     while len(logo1) < num_points:
-        t = np.random.uniform(0, 2 * math.pi)
-        r = scale * 0.7 * math.sqrt(np.random.uniform(0.2, 1.0))
-        x = cx + r * math.cos(t)
-        y = cy + r * math.sin(t) * 0.8
-        # Add shape cutouts for python style
-        if not (-scale*0.2 < (x-cx) < scale*0.2 and -scale*0.1 < (y-cy) < scale*0.1):
-            logo1.append((x, y))
-    logo1 = np.array(logo1[:num_points])
-    
-    # Logo 2: React logo shape (three ellipses rotated by 0, 60, 120 deg)
-    logo2 = []
-    while len(logo2) < num_points:
         choice = np.random.randint(0, 4)
         if choice == 0:  # center nucleus
             r = scale * 0.2 * math.sqrt(np.random.uniform(0, 1.0))
             theta = np.random.uniform(0, 2 * math.pi)
-            logo2.append((cx + r * math.cos(theta), cy + r * math.sin(theta)))
+            logo1.append((cx + r * math.cos(theta), cy + r * math.sin(theta)))
         else:
             angle_deg = (choice - 1) * 60
             angle_rad = math.radians(angle_deg)
@@ -149,31 +158,19 @@ def generate_logo_point_clouds(num_points=900, cx=240, cy=330, scale=120):
             ey = b * math.sin(t)
             rx = ex * math.cos(angle_rad) - ey * math.sin(angle_rad)
             ry = ex * math.sin(angle_rad) + ey * math.cos(angle_rad)
-            logo2.append((cx + rx, cy + ry))
-    logo2 = np.array(logo2[:num_points])
-    
-    # Logo 3: Code brackets </>
-    logo3 = []
-    while len(logo3) < num_points:
-        part = np.random.randint(0, 3)
-        if part == 0:  # <
-            t = np.random.uniform(-1, 1)
-            x = cx - scale*0.45 + abs(t) * scale*0.3
-            y = cy + t * scale*0.6
-            logo3.append((x, y))
-        elif part == 1:  # >
-            t = np.random.uniform(-1, 1)
-            x = cx + scale*0.45 - abs(t) * scale*0.3
-            y = cy + t * scale*0.6
-            logo3.append((x, y))
-        else:  # /
-            t = np.random.uniform(-1, 1)
-            x = cx + t * scale*0.25
-            y = cy - t * scale*0.65
-            logo3.append((x, y))
-    logo3 = np.array(logo3[:num_points])
-    
-    return logo1, logo2, logo3
+            logo1.append((cx + rx, cy + ry))
+    logo1 = np.array(logo1[:num_points])
+
+    # Logo 2: Node.js from Nodejs.png
+    logo2 = extract_logo_from_image("Nodejs.png", num_points=num_points, cx=cx, cy=cy, scale=scale)
+
+    # Logo 3: ML from ML.png
+    logo3 = extract_logo_from_image("ML.png", num_points=num_points, cx=cx, cy=cy, scale=scale)
+
+    # Logo 4: PostgreSQL from postgresql.webp
+    logo4 = extract_logo_from_image("postgresql.webp", num_points=num_points, cx=cx, cy=cy, scale=scale)
+
+    return logo1, logo2, logo3, logo4
 
 def match_point_clouds(p1, p2):
     """
@@ -251,48 +248,52 @@ def generate_svg(dark_mode=True):
         dx = (240.0 - mean_x) * 0.42
         dy = (345.0 - mean_y) * 0.42
         
-        # Loop keyframes (14.2s total: 0-3s hold, 3-4.3s fade/drift, 4.3-12.9s hidden, 12.9-14.2s return)
-        key_times = "0;0.211;0.302;0.908;1"
+        # Loop keyframes (17.5s total: 0-3s hold, 3-4.3s fade/drift, 4.3-16.2s hidden, 16.2-17.5s return)
+        key_times = "0;0.171;0.246;0.926;1"
         opacity_vals = "1;1;0;0;1"
         translate_vals = f"0,0;0,0;{dx:.1f},{dy:.1f};{dx:.1f},{dy:.1f};0,0"
         
         portrait_paths.append(f'''<path d="{d_str}" stroke="{portrait_color}" stroke-width="1.3" shape-rendering="crispEdges">
-      <animate attributeName="opacity" values="{opacity_vals}" keyTimes="{key_times}" dur="14.2s" repeatCount="indefinite" />
-      <animateTransform attributeName="transform" type="translate" values="{translate_vals}" keyTimes="{key_times}" dur="14.2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="{opacity_vals}" keyTimes="{key_times}" dur="17.5s" repeatCount="indefinite" />
+      <animateTransform attributeName="transform" type="translate" values="{translate_vals}" keyTimes="{key_times}" dur="17.5s" repeatCount="indefinite" />
     </path>''')
     
-    # 2. Travellers Layer (~900 dots morphing between 3 logos)
-    logo1, logo2, logo3 = generate_logo_point_clouds(num_points=900, cx=240, cy=345, scale=110)
+    # 2. Travellers Layer (~900 dots morphing between 4 logos: React -> Node.js -> ML -> PostgreSQL)
+    logo1, logo2, logo3, logo4 = generate_logo_point_clouds(num_points=900, cx=240, cy=345, scale=110)
     logo2_matched = match_point_clouds(logo1, logo2)
     logo3_matched = match_point_clouds(logo2_matched, logo3)
-    logo1_ret_matched = match_point_clouds(logo3_matched, logo1)
+    logo4_matched = match_point_clouds(logo3_matched, logo4)
+    logo1_ret_matched = match_point_clouds(logo4_matched, logo1)
     
     traveller_elements = []
-    # KeyTimes for 14.2s cycle:
-    # 0.0s (0) to 3.0s (0.211): Hidden (opacity 0)
-    # 3.0s (0.211) to 4.3s (0.302): Transition Portrait -> Logo1 (opacity fades in 0 -> 1)
-    # 4.3s (0.302) to 6.3s (0.443): Logo1 hold
-    # 6.3s (0.443) to 7.6s (0.535): Transition Logo1 -> Logo2
-    # 7.6s (0.535) to 9.6s (0.676): Logo2 hold
-    # 9.6s (0.676) to 10.9s (0.767): Transition Logo2 -> Logo3
-    # 10.9s (0.767) to 12.9s (0.908): Logo3 hold
-    # 12.9s (0.908) to 14.2s (1.000): Transition Logo3 -> Portrait (opacity fades out 1 -> 0)
-    t_times = "0;0.211;0.302;0.443;0.535;0.676;0.767;0.908;1"
-    t_opacity = "0;0;1;1;1;1;1;1;0"
+    # KeyTimes for 17.5s cycle:
+    # 0.0s to 3.0s (0.171): Hidden (opacity 0)
+    # 3.0s (0.171) to 4.3s (0.246): Transition Portrait -> Logo1 (React) (opacity fades in 0 -> 1)
+    # 4.3s (0.246) to 6.3s (0.360): Logo1 hold
+    # 6.3s (0.360) to 7.6s (0.434): Transition Logo1 -> Logo2 (Node.js)
+    # 7.6s (0.434) to 9.6s (0.549): Logo2 hold
+    # 9.6s (0.549) to 10.9s (0.623): Transition Logo2 -> Logo3 (ML)
+    # 10.9s (0.623) to 12.9s (0.737): Logo3 hold
+    # 12.9s (0.737) to 14.2s (0.811): Transition Logo3 -> Logo4 (PostgreSQL)
+    # 14.2s (0.811) to 16.2s (0.926): Logo4 hold
+    # 16.2s (0.926) to 17.5s (1.000): Transition Logo4 -> Portrait (opacity fades out 1 -> 0)
+    t_times = "0;0.171;0.246;0.360;0.434;0.549;0.623;0.737;0.811;0.926;1"
+    t_opacity = "0;0;1;1;1;1;1;1;1;1;0"
     
     for i in range(len(logo1)):
         x1, y1 = logo1[i]
         x2, y2 = logo2_matched[i]
         x3, y3 = logo3_matched[i]
+        x4, y4 = logo4_matched[i]
         x1r, y1r = logo1_ret_matched[i]
         
-        x_vals = f"{x1:.1f};{x1:.1f};{x1:.1f};{x1:.1f};{x2:.1f};{x2:.1f};{x3:.1f};{x3:.1f};{x1r:.1f}"
-        y_vals = f"{y1:.1f};{y1:.1f};{y1:.1f};{y1:.1f};{y2:.1f};{y2:.1f};{y3:.1f};{y3:.1f};{y1r:.1f}"
+        x_vals = f"{x1:.1f};{x1:.1f};{x1:.1f};{x1:.1f};{x2:.1f};{x2:.1f};{x3:.1f};{x3:.1f};{x4:.1f};{x4:.1f};{x1r:.1f}"
+        y_vals = f"{y1:.1f};{y1:.1f};{y1:.1f};{y1:.1f};{y2:.1f};{y2:.1f};{y3:.1f};{y3:.1f};{y4:.1f};{y4:.1f};{y1r:.1f}"
         
         traveller_elements.append(f'''<circle r="1.6" fill="{portrait_color}">
-      <animate attributeName="cx" values="{x_vals}" keyTimes="{t_times}" dur="14.2s" repeatCount="indefinite" />
-      <animate attributeName="cy" values="{y_vals}" keyTimes="{t_times}" dur="14.2s" repeatCount="indefinite" />
-      <animate attributeName="opacity" values="{t_opacity}" keyTimes="{t_times}" dur="14.2s" repeatCount="indefinite" />
+      <animate attributeName="cx" values="{x_vals}" keyTimes="{t_times}" dur="17.5s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="{y_vals}" keyTimes="{t_times}" dur="17.5s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="{t_opacity}" keyTimes="{t_times}" dur="17.5s" repeatCount="indefinite" />
     </circle>''')
 
     # Info Panel Rows (Right side ~58%, starting x=500, w=630)
