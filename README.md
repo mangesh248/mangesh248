@@ -1,3 +1,13 @@
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)"
+      srcset="https://raw.githubusercontent.com/mangesh248/mangesh248/main/dark.svg">
+    <source media="(prefers-color-scheme: light)"
+      srcset="https://raw.githubusercontent.com/mangesh248/mangesh248/main/light.svg">
+    <img alt="Mangesh Wagh" src="https://raw.githubusercontent.com/mangesh248/mangesh248/main/light.svg">
+  </picture>
+</div>
+
 <h1 align="center">Hey there! 👋 I'm Mangesh Wagh</h1>
 <h3 align="center"> Full-Stack Developer | Devops Enthusiast | Hackathon Participant | Practicing DSA</h3>
 
@@ -79,7 +89,28 @@
 ---
 
 ## 📈 GitHub Stats
-  <img src="https://github.com/mangeshwagh91/mangeshwagh91/blob/main/err.png?raw=true"/>
+
+<div align="center">
+  <img width="100%" src="https://streak-stats.demolab.com/?user=mangesh248&hide_border=true&background=0A101F&stroke=22D3EE&ring=A78BFA&fire=10B981&currStreakLabel=22D3EE&sideLabels=94A3B8&currStreakNum=F8FAFC&sideNums=F8FAFC&dates=64748B&titleColor=22D3EE&card_width=1180" alt="streak" />
+  <br/>
+  <img width="49%" src="https://github-readme-stats.vercel.app/api?username=mangesh248&show_icons=true&count_private=true&include_all_commits=true&hide_rank=true&hide_border=true&title_color=22D3EE&icon_color=A78BFA&text_color=94A3B8&bg_color=0A101F&card_width=500" alt="stats" />
+  <img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=mangesh248&layout=compact&langs_count=8&hide_border=true&title_color=22D3EE&text_color=94A3B8&bg_color=0A101F&card_width=500" alt="top langs" />
+</div>
+
+---
+
+## 🐍 Contribution Snake
+
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)"
+      srcset="https://raw.githubusercontent.com/mangesh248/mangesh248/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)"
+      srcset="https://raw.githubusercontent.com/mangesh248/mangesh248/output/github-snake.svg" />
+    <img alt="Snake eating my contributions"
+      src="https://raw.githubusercontent.com/mangesh248/mangesh248/output/github-snake.svg" />
+  </picture>
+</div>
 
 ---
 
@@ -92,23 +123,27 @@
 - 💼 Open to **placement offers**, **internships**, and **freelance/full-time roles**
 - ⚡ Let’s collaborate on tech that truly matters
 
-<p align="left">
+<div align="center">
   <a href="https://www.linkedin.com/in/mangesh-wagh-/" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn" />
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
+  &nbsp;&nbsp;
   <a href="https://codeforces.com/profile/man_91" target="_blank">
-    <img src="https://img.shields.io/badge/Codeforces-orange?style=for-the-badge&logo=codeforces" alt="Codeforces" />
+    <img src="https://img.shields.io/badge/Codeforces-0A101F?style=for-the-badge&logo=codeforces&logoColor=A78BFA&labelColor=0A101F" alt="Codeforces" />
   </a>
+  &nbsp;&nbsp;
   <a href="https://leetcode.com/u/mangesh_wagh91/" target="_blank">
-    <img src="https://img.shields.io/badge/LeetCode-black?style=for-the-badge&logo=leetcode" alt="LeetCode" />
+    <img src="https://img.shields.io/badge/LeetCode-0A101F?style=for-the-badge&logo=leetcode&logoColor=22D3EE&labelColor=0A101F" alt="LeetCode" />
   </a>
+  &nbsp;&nbsp;
   <a href="https://www.codechef.com/users/man_91" target="_blank">
-    <img src="https://img.shields.io/badge/CodeChef-%23964B00.svg?style=for-the-badge&logo=codechef&logoColor=white" alt="CodeChef" />
+    <img src="https://img.shields.io/badge/CodeChef-0A101F?style=for-the-badge&logo=codechef&logoColor=F8FAFC&labelColor=0A101F" alt="CodeChef" />
   </a>
+  &nbsp;&nbsp;
   <a href="mailto:wmangesh91@gmail.com" target="_blank">
-    <img src="https://img.shields.io/badge/Gmail-red?style=for-the-badge&logo=gmail" alt="Email" />
+    <img src="https://img.shields.io/badge/Email-0A101F?style=for-the-badge&logo=gmail&logoColor=10B981&labelColor=0A101F" alt="Email" />
   </a>
-</p>
+</div>
 
 ---
 
