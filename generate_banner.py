@@ -116,10 +116,9 @@ def extract_logo_from_image(image_path, num_points=900, cx=240, cy=345, scale=11
     """
     img = Image.open(image_path).convert("RGBA").resize((65, 65), Image.Resampling.LANCZOS)
     arr = np.array(img).astype(int)
-    bg = arr[0, 0, :3]
-    color_diff_from_bg = np.max(np.abs(arr[:, :, :3] - bg), axis=2)
-    is_not_white = (arr[:, :, 0] < 240) | (arr[:, :, 1] < 240) | (arr[:, :, 2] < 240)
-    mask = (arr[:, :, 3] > 40) & (color_diff_from_bg > 20) & is_not_white
+    is_dark = (arr[:, :, 0] < 170) & (arr[:, :, 1] < 170) & (arr[:, :, 2] < 170)
+    is_colored = (np.max(arr[:, :, :3], axis=2) - np.min(arr[:, :, :3], axis=2)) > 15
+    mask = (arr[:, :, 3] > 40) & (is_dark | is_colored)
     ys, xs = np.where(mask)
     if len(xs) == 0:
         return np.zeros((num_points, 2)) + [cx, cy]
