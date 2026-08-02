@@ -120,7 +120,7 @@
 
 - 🔗 [LinkedIn](https://www.linkedin.com/in/mangesh-wagh-/)
 - 💻 [Codeforces](https://codeforces.com/profile/man_91)
-- 👨‍💻 [LeetCode](https://www.codechef.com/users/man_91)
+- 👨‍💻 [LeetCode](https://leetcode.com/u/mangesh_wagh91/)
 - 💌 Email: **wmangesh91@gmail.com**
 - 💼 Open to **placement offers**, **internships**, and **freelance/full-time roles**
 - ⚡ Let’s collaborate on tech that truly matters
