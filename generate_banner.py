@@ -277,7 +277,7 @@ def generate_svg(dark_mode=True):
     # 14.2s (0.811) to 16.2s (0.926): Hold at PostgreSQL
     # 16.2s (0.926) to 17.5s (1.000): Fly PostgreSQL -> Photo points
     t_times = "0;0.171;0.246;0.360;0.434;0.549;0.623;0.737;0.811;0.926;1"
-    t_opacity = "1;1;1;1;1;1;1;1;1;1;1"
+    t_opacity = "0;0;1;1;1;1;1;1;1;1;0"
     
     for i in range(len(portrait_pts)):
         xp, yp = portrait_pts[i]
