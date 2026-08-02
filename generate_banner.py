@@ -244,53 +244,51 @@ def generate_svg(dark_mode=True):
         d_parts = [f"M{dot_coords[i, 0]:.1f},{dot_coords[i, 1]:.1f}h1.3" for i in indices]
         d_str = "".join(d_parts)
         
-        # Calculate drift offset (~42% toward center (240, 345))
-        mean_x = np.mean(dot_coords[indices, 0])
-        mean_y = np.mean(dot_coords[indices, 1])
-        dx = (240.0 - mean_x) * 0.42
-        dy = (345.0 - mean_y) * 0.42
-        
-        # Loop keyframes (17.5s total: 0-3s hold, 3-4.3s fade/drift, 4.3-16.2s hidden, 16.2-17.5s return)
-        key_times = "0;0.171;0.246;0.926;1"
+        # Hold photo in place (0-3s), smoothly fade out in place (3-4.1s), remain hidden (4.1-16.4s), smoothly fade in (16.4-17.5s)
+        key_times = "0;0.171;0.234;0.937;1"
         opacity_vals = "1;1;0;0;1"
-        translate_vals = f"0,0;0,0;{dx:.1f},{dy:.1f};{dx:.1f},{dy:.1f};0,0"
         
         portrait_paths.append(f'''<path d="{d_str}" stroke="{portrait_color}" stroke-width="1.3" shape-rendering="crispEdges">
       <animate attributeName="opacity" values="{opacity_vals}" keyTimes="{key_times}" dur="17.5s" repeatCount="indefinite" />
-      <animateTransform attributeName="transform" type="translate" values="{translate_vals}" keyTimes="{key_times}" dur="17.5s" repeatCount="indefinite" />
     </path>''')
     
-    # 2. Travellers Layer (~900 dots morphing between 4 logos: React -> Node.js -> ML -> PostgreSQL)
+    # 2. Travellers Layer (~900 dots flying from exact Photo points -> React -> Node.js -> ML -> PostgreSQL -> Photo points)
+    np.random.seed(42)
+    sample_idx = np.random.choice(len(dot_coords), 900, replace=False)
+    portrait_pts = dot_coords[sample_idx]
+    
     logo1, logo2, logo3, logo4 = generate_logo_point_clouds(num_points=900, cx=240, cy=345, scale=110)
-    logo2_matched = match_point_clouds(logo1, logo2)
+    logo1_matched = match_point_clouds(portrait_pts, logo1)
+    logo2_matched = match_point_clouds(logo1_matched, logo2)
     logo3_matched = match_point_clouds(logo2_matched, logo3)
     logo4_matched = match_point_clouds(logo3_matched, logo4)
-    logo1_ret_matched = match_point_clouds(logo4_matched, logo1)
+    portrait_ret_matched = match_point_clouds(logo4_matched, portrait_pts)
     
     traveller_elements = []
     # KeyTimes for 17.5s cycle:
-    # 0.0s to 3.0s (0.171): Hidden (opacity 0)
-    # 3.0s (0.171) to 4.3s (0.246): Transition Portrait -> Logo1 (React) (opacity fades in 0 -> 1)
-    # 4.3s (0.246) to 6.3s (0.360): Logo1 hold
-    # 6.3s (0.360) to 7.6s (0.434): Transition Logo1 -> Logo2 (Node.js)
-    # 7.6s (0.434) to 9.6s (0.549): Logo2 hold
-    # 9.6s (0.549) to 10.9s (0.623): Transition Logo2 -> Logo3 (ML)
-    # 10.9s (0.623) to 12.9s (0.737): Logo3 hold
-    # 12.9s (0.737) to 14.2s (0.811): Transition Logo3 -> Logo4 (PostgreSQL)
-    # 14.2s (0.811) to 16.2s (0.926): Logo4 hold
-    # 16.2s (0.926) to 17.5s (1.000): Transition Logo4 -> Portrait (opacity fades out 1 -> 0)
+    # 0.0s to 3.0s (0.171): Sit on Photo points (opacity 1)
+    # 3.0s (0.171) to 4.3s (0.246): Fly from Photo points -> React Atom (opacity 1)
+    # 4.3s (0.246) to 6.3s (0.360): Hold at React Atom
+    # 6.3s (0.360) to 7.6s (0.434): Fly React -> Node.js
+    # 7.6s (0.434) to 9.6s (0.549): Hold at Node.js
+    # 9.6s (0.549) to 10.9s (0.623): Fly Node.js -> ML
+    # 10.9s (0.623) to 12.9s (0.737): Hold at ML
+    # 12.9s (0.737) to 14.2s (0.811): Fly ML -> PostgreSQL
+    # 14.2s (0.811) to 16.2s (0.926): Hold at PostgreSQL
+    # 16.2s (0.926) to 17.5s (1.000): Fly PostgreSQL -> Photo points
     t_times = "0;0.171;0.246;0.360;0.434;0.549;0.623;0.737;0.811;0.926;1"
-    t_opacity = "0;0;1;1;1;1;1;1;1;1;0"
+    t_opacity = "1;1;1;1;1;1;1;1;1;1;1"
     
-    for i in range(len(logo1)):
-        x1, y1 = logo1[i]
+    for i in range(len(portrait_pts)):
+        xp, yp = portrait_pts[i]
+        x1, y1 = logo1_matched[i]
         x2, y2 = logo2_matched[i]
         x3, y3 = logo3_matched[i]
         x4, y4 = logo4_matched[i]
-        x1r, y1r = logo1_ret_matched[i]
+        xpr, ypr = portrait_ret_matched[i]
         
-        x_vals = f"{x1:.1f};{x1:.1f};{x1:.1f};{x1:.1f};{x2:.1f};{x2:.1f};{x3:.1f};{x3:.1f};{x4:.1f};{x4:.1f};{x1r:.1f}"
-        y_vals = f"{y1:.1f};{y1:.1f};{y1:.1f};{y1:.1f};{y2:.1f};{y2:.1f};{y3:.1f};{y3:.1f};{y4:.1f};{y4:.1f};{y1r:.1f}"
+        x_vals = f"{xp:.1f};{xp:.1f};{x1:.1f};{x1:.1f};{x2:.1f};{x2:.1f};{x3:.1f};{x3:.1f};{x4:.1f};{x4:.1f};{xpr:.1f}"
+        y_vals = f"{yp:.1f};{yp:.1f};{y1:.1f};{y1:.1f};{y2:.1f};{y2:.1f};{y3:.1f};{y3:.1f};{y4:.1f};{y4:.1f};{ypr:.1f}"
         
         traveller_elements.append(f'''<circle r="1.6" fill="{portrait_color}">
       <animate attributeName="cx" values="{x_vals}" keyTimes="{t_times}" dur="17.5s" repeatCount="indefinite" />
