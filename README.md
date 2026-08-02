@@ -97,6 +97,7 @@
   <img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=mangesh248&layout=compact&langs_count=8&hide_border=true&title_color=22D3EE&text_color=94A3B8&bg_color=0A101F&card_width=500" alt="top langs" />
 </div>
 
+<!-- Note: Uncomment the section below AFTER your GitHub Action runs green and creates the 'output' branch:
 ---
 
 ## 🐍 Contribution Snake
@@ -111,6 +112,7 @@
       src="https://raw.githubusercontent.com/mangesh248/mangesh248/output/github-snake.svg" />
   </picture>
 </div>
+-->
 
 ---
 
