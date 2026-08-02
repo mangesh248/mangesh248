@@ -310,8 +310,8 @@ def generate_svg(dark_mode=True):
         ("Grid.Mail", "wmangesh91@gmail.com"),
         ("Grid.LinkedIn", "linkedin.com/in/mangesh-wagh-"),
         ("Grid.GitHub", "mangesh248"),
-        ("Grid.Codeforces", "man_91"),
-        ("Grid.LeetCode", "mangesh_wagh91")
+        ("Grid.Codeforces", "mangeshh223"),
+        ("Grid.LeetCode", "mangesh24891")
     ]
     
     rows_svg = []

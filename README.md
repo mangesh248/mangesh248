@@ -119,8 +119,8 @@
 ## 🤝 Let's Connect
 
 - 🔗 [LinkedIn](https://www.linkedin.com/in/mangesh-wagh-/)
-- 💻 [Codeforces](https://codeforces.com/profile/man_91)
-- 👨‍💻 [LeetCode](https://leetcode.com/u/mangesh_wagh91/)
+- 💻 [Codeforces](https://codeforces.com/profile/mangeshh223)
+- 👨‍💻 [LeetCode](https://leetcode.com/u/mangesh24891/)
 - 💌 Email: **wmangesh91@gmail.com**
 - 💼 Open to **placement offers**, **internships**, and **freelance/full-time roles**
 - ⚡ Let’s collaborate on tech that truly matters
@@ -130,11 +130,11 @@
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
   &nbsp;&nbsp;
-  <a href="https://codeforces.com/profile/man_91" target="_blank">
+  <a href="https://codeforces.com/profile/mangeshh223" target="_blank">
     <img src="https://img.shields.io/badge/Codeforces-0A101F?style=for-the-badge&logo=codeforces&logoColor=A78BFA&labelColor=0A101F" alt="Codeforces" />
   </a>
   &nbsp;&nbsp;
-  <a href="https://leetcode.com/u/mangesh_wagh91/" target="_blank">
+  <a href="https://leetcode.com/u/mangesh24891/" target="_blank">
     <img src="https://img.shields.io/badge/LeetCode-0A101F?style=for-the-badge&logo=leetcode&logoColor=22D3EE&labelColor=0A101F" alt="LeetCode" />
   </a>
   &nbsp;&nbsp;
