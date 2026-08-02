@@ -115,8 +115,11 @@ def extract_logo_from_image(image_path, num_points=900, cx=240, cy=345, scale=11
     Extract ~900 dot coordinates from an image file, centered at (cx, cy).
     """
     img = Image.open(image_path).convert("RGBA").resize((65, 65), Image.Resampling.LANCZOS)
-    arr = np.array(img)
-    mask = (arr[:, :, 3] > 40) & ((arr[:, :, 0] < 245) | (arr[:, :, 1] < 245) | (arr[:, :, 2] < 245))
+    arr = np.array(img).astype(int)
+    bg = arr[0, 0, :3]
+    color_diff_from_bg = np.max(np.abs(arr[:, :, :3] - bg), axis=2)
+    is_not_white = (arr[:, :, 0] < 240) | (arr[:, :, 1] < 240) | (arr[:, :, 2] < 240)
+    mask = (arr[:, :, 3] > 40) & (color_diff_from_bg > 20) & is_not_white
     ys, xs = np.where(mask)
     if len(xs) == 0:
         return np.zeros((num_points, 2)) + [cx, cy]
@@ -136,7 +139,7 @@ def generate_logo_point_clouds(num_points=900, cx=240, cy=345, scale=110):
     1. React (three ellipses + central atom)
     2. Node.js (extracted from Nodejs.png)
     3. ML (extracted from ML.png)
-    4. PostgreSQL (extracted from postgresql.webp)
+    4. PostgreSQL (extracted from postgresql.png)
     """
     np.random.seed(42)
     
@@ -167,8 +170,8 @@ def generate_logo_point_clouds(num_points=900, cx=240, cy=345, scale=110):
     # Logo 3: ML from ML.png
     logo3 = extract_logo_from_image("ML.png", num_points=num_points, cx=cx, cy=cy, scale=scale)
 
-    # Logo 4: PostgreSQL from postgresql.webp
-    logo4 = extract_logo_from_image("postgresql.webp", num_points=num_points, cx=cx, cy=cy, scale=scale)
+    # Logo 4: PostgreSQL from postgresql.png
+    logo4 = extract_logo_from_image("postgresql.png", num_points=num_points, cx=cx, cy=cy, scale=scale)
 
     return logo1, logo2, logo3, logo4
 
