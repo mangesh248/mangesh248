@@ -8,45 +8,7 @@
   </picture>
 </div>
 
-<h1 align="center">Hey there! 👋 I'm Mangesh Wagh</h1>
-<h3 align="center"> Full-Stack Developer | Devops Enthusiast | Hackathon Participant | Practicing DSA</h3>
 
-
----
-
-## 🚀 About Me
-
-- 🎓 CSE Undergrad | Batch of **2028 (GECA)**
-- 🛠 Building **AI-powered systems, full-stack apps, and real-time platforms**
-- 🚀 **SIH 2025 National Finalist** | Open-source contributor (GSSoC)
-- 💡 Working on **ALONI** – a decentralized reputation platform (startup)
-- 📊 Strong in **Python, JavaScript, C++, AI/ML, and system design**
-- ☁️ Exploring **DevOps (Docker, Kubernetes, CI/CD)**  
-- 🔍 Focused on **scalable architectures and real-world problem solving**
-- 🧠 Actively practicing **DSA & competitive programming**
-
----
-
-## 🧠 Projects & Domains
-
-- 🚀 **ALvance** – AI-driven LCA tool for sustainability (88–93% accuracy, real datasets)  
-- 🧠 **Hallucination Hunter** – LLM hallucination detection system with evaluation metrics  
-- 📡 **SentinelAI** – Real-time surveillance system with WebSockets + YOLO  
-- 📈 **Stockinator** – Multi-strategy AI trading bot with real-time signals  
-- 🌐 **ALONI** – Decentralized reputation system (startup project)  
-- 📰 **Veritron AI** – Fake news detection using NLP  
-
-
----
-
-## 🏆 Achievements
-
-- 🥇 **Smart India Hackathon 2025 Finalist** (Top teams nationwide)  
-- 🧠 Participated in **IIT Roorkee ML Competition (DataForge)**  
-- 💻 **GSSoC 2025 Contributor** (Open-source contributions recognized)  
-- ⚡ Built multiple **real-world AI + full-stack systems**  
-
----
 
 ### 🔧 Tech Stack
 
@@ -95,21 +57,6 @@
   <br/>
   <img width="49%" src="https://github-readme-stats-fast.vercel.app/api?username=mangesh248&show_icons=true&count_private=true&include_all_commits=true&hide_rank=true&hide_border=true&title_color=22D3EE&icon_color=A78BFA&text_color=94A3B8&bg_color=0A101F&card_width=500" alt="stats" />
   <img width="49%" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=mangesh248&layout=compact&langs_count=8&hide_border=true&title_color=22D3EE&text_color=94A3B8&bg_color=0A101F&card_width=500" alt="top langs" />
-</div>
-
----
-
-## 🐍 Contribution Snake
-
-<div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)"
-      srcset="https://raw.githubusercontent.com/mangesh248/mangesh248/output/github-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)"
-      srcset="https://raw.githubusercontent.com/mangesh248/mangesh248/output/github-snake.svg" />
-    <img alt="Snake eating my contributions"
-      src="https://raw.githubusercontent.com/mangesh248/mangesh248/output/github-snake.svg" />
-  </picture>
 </div>
 
 ---
