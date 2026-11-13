@@ -8,20 +8,6 @@
   </picture>
 </div>
 
-## 🏙️ 3D Contribution City
-
-<div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mangesh248/mangesh248/main/profile-3d-contrib/profile-night-view.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/mangesh248/mangesh248/main/profile-3d-contrib/profile-green-animate.svg">
-    <img width="100%" src="https://raw.githubusercontent.com/mangesh248/mangesh248/main/profile-3d-contrib/profile-night-view.svg" alt="3D Contribution City Buildings" />
-  </picture>
-  <br/>
-  <sub>🏢 <i>Each building height represents daily GitHub commit activity</i> | <a href="https://honzaap.github.io/GithubCity?name=mangesh248" target="_blank">🌐 Explore Interactive 3D City</a></sub>
-</div>
-
-<br/>
-
 ## 📈 GitHub Stats
 
 <div align="center">
